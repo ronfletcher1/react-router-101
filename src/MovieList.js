@@ -14,6 +14,7 @@ class Movies extends Component{
 		var url = 'https://api.themoviedb.org/3/movie/now_playing?api_key=fec8b5ab27b292a68294261bb21b04a5&query=superman';
 		axios.get(url)
 		.then((movieData)=>{
+			console.log(movieData);
 			var movieResults = movieData.data.results;
 			this.setState({
 				movieList: movieResults

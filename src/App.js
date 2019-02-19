@@ -6,9 +6,11 @@ import { BrowserRouter as Router, Route, Link} from 'react-router-dom';
 import About from './About';
 import Home from './Home';
 import MovieList from './MovieList';
+import Movie from './Movie';
 
 class App extends Component {
   render() {
+    const superHero = "The Flash!!!";
     // the Router goes around EVERYTHING it needs to control
     return (
       <Router>
@@ -19,9 +21,7 @@ class App extends Component {
               <li><a href="/about">About</a></li> */}                     
           <Link to= "/">||Home ||</Link>
           <Link to= "/about">About ||</Link>
-          <Link to= "/movies">Movies||</Link>
-
-          
+          <Link to= "/movies">Movies||</Link>         
         </ul>
 
       {/* Use the Route component to set up a path match  */}
@@ -30,9 +30,14 @@ class App extends Component {
       {/* Route is self closing */}
       {/* If you have path by itself, it will look for that path ANYWHERE */}
       {/* in the URL. To resetrict to exact, use exact*/}
-        <Route exact path="/" component={Home} />
+      {/* <Route exact path="/" component={Home} /> */}
+        <Route  path="/" exact render={(props)=>{
+          return (<Home superHero={superHero} />
+          )
+          } } />
         <Route path="/about" component={About} />
-        <Route path="/movies" component={MovieList} />
+        <Route exact path="/movies" component={MovieList} />
+        <Route path="/movies/:movieId" component={Movie} />
       </div>
       </Router>
     );
